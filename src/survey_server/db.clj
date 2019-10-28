@@ -25,14 +25,32 @@
                                :a7 "Clojure/ClojureScript"}}]}})
 
 
+
+
+
+
 (def answers
-  {:ps-2019 {"Question 1" {"user-1" "a1"}}})
+  {:ps-2019 {"Question-1" {:a1 0
+                           :a2 0
+                           :a3 3
+                           :a4 0
+                           :a5 0}}})
+
+
 
 
 (defn questions
   "Returns questions for the survey specified by the given sid"
-  [sid]
-  (get survey-questions sid))
+  [sid qid]
+  (get survey-questions [sid qid]))
+
+
+(defn answer-count
+  [sid qid aid]
+  (if-let [count (get-in answers [sid qid aid])]
+    count
+    0))
+
 
 
 

@@ -15,15 +15,34 @@
   (testing "not-found route"
     (let [response (routes/app (mock/request :get "/invalid"))]
       (testing "that response status code is 404"
-        (is (= (:status response) 404))))))
+        (is (= 404 (:status response)))))))
 
 
 ;; ----------------------------------------------------------------
-;; Test business logic routes defined in survey.server.routes namespace
+;; Test business logic route for retrieving questions.
 ;; ----------------------------------------------------------------
-(deftest main-routes-test
+(deftest questions-route-test
   (testing "questions route"
     (let [req (mock/request :get "/questions/ps-2019")
           res (routes/app req)]
-      (is (= (:status res) 200))
+      (is (= 200 (:status res)))
       (is (> (count (get-in res [:body :questions])) 0)))))
+
+
+
+
+
+;; ----------------------------------------------------------------
+;; Test business logic routes for saving questions
+;; ----------------------------------------------------------------
+(deftest answers-route-test
+  (testing "answers route"
+    (let [ans {:question-id "ps-2019-q1"
+               :user-id "user1"
+               :answer-id "Clojure"}
+          req (mock/request :post "/answer/ps-2019" ans)
+          res (routes/app req)]
+      (is 200 (= (:status res)))
+      (is (some? (:body res)))
+      (is (= (:answer-id ans) (:answer-id (:body res)))))))
+

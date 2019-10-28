@@ -2,7 +2,7 @@
   (:require [compojure.core :refer :all]
             [compojure.route :as route]
             [survey-server.handler :as handler]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]))
+            [ring.middleware.defaults :refer [wrap-defaults api-defaults]]))
 
 
 ;; ----------------------------------------------------------------
@@ -11,7 +11,8 @@
 (defroutes app-routes
   (GET "/" [] (handler/home))
   (GET "/questions/:survey-id" [survey-id] (handler/questions (keyword survey-id)))
-  (POST "/answer" request (handler/register-answer (:body request)))
+  (POST "/answer/:survey-id" [survey-id :as {req-body :body}] (handler/register-answer survey-id
+                                                                                       req-body))
   (route/not-found "Not Found"))
 
 
@@ -22,4 +23,4 @@
 ;; ----------------------------------------------------------------
 (def app
   (-> app-routes
-      (wrap-defaults site-defaults)))
+      (wrap-defaults api-defaults)))

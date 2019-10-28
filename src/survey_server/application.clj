@@ -11,7 +11,7 @@
 
 
 ;; ----------------------------------------------------------------
-;;
+;; Ensure we have a valid port to use
 ;; ----------------------------------------------------------------
 (defn valid-port
   "Ensure port is valid otherwise default to 8080"
@@ -20,7 +20,7 @@
 
 
 ;; ----------------------------------------------------------------
-;; 
+;; Start server
 ;; ----------------------------------------------------------------
 (defn start-server
   "Starts a server instances on a given port if provided ortherwise
@@ -33,7 +33,7 @@
 
 
 ;; ----------------------------------------------------------------
-;;
+;; Stop server
 ;; ----------------------------------------------------------------
 (defn stop-server
   "Stop any running instances and resets any cached state"
