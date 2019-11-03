@@ -1,0 +1,10 @@
+;; Find all suveys returning entity id and name
+[:find ?e ?n
+ :where [?e :survey/name ?n]]
+
+;; Find all questions retunring id and tetx
+[:find ?e ?id ?txt
+ :where [?e :question/id ?id]
+        [?e :question/text ?txt]]
+
+

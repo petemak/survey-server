@@ -1,6 +1,8 @@
 (ns survey-server.application
-  (:require  [survey-server.routes :as routes]
-             [ring.adapter.jetty :as jetty]))
+  (:require  [mount.core :as mount]
+             [ring.adapter.jetty :as jetty]
+             [survey-server.db :refer [conn]]
+             [survey-server.routes :as routes]))
 
 
 ;; ----------------------------------------------------------------
@@ -29,7 +31,8 @@
   (let [p (valid-port port)]
     (println "::=> Starting server on port [" p "] ....")
     (reset! server (jetty/run-jetty routes/app {:port p :join? false}))
-    (println "::=> Server started on port [" p "]" ) ))
+    (println "::=> Server started on port [" p "]" )
+    (mount/start)))
 
 
 ;; ----------------------------------------------------------------
@@ -39,4 +42,5 @@
   "Stop any running instances and resets any cached state"
   []
   (.stop @server)
+  (mount/stop)
   (reset! server nil))

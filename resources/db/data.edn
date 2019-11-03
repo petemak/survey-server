@@ -1,0 +1,44 @@
+[{:db/id #db/id [:db.part/user -100]
+  :survey/id  :ps-2019
+  :survey/name "Programmer Survey 2019"}
+ 
+ {:db/id #db/id [:db.part/user -200]
+  :question/id "ps-2019-Q1"
+  :question/text "How would you desribe your role?"
+  :question/survey-ref #db/id [:db.part/user -100]}
+
+ {:answer/id "ps-2019-Q1-A1"
+  :answer/text "Java"
+  :answer/question-ref #db/id [:db.part/user -200]}
+
+ {:answer/id "ps-2019-Q1-A2"
+  :answer/text "C#"
+  :answer/question-ref #db/id [:db.part/user -200]}
+
+ {:answer/id "ps-2019-Q1-A3"
+  :answer/text "F#"
+  :answer/question-ref #db/id [:db.part/user -200]}
+
+ {:answer/id "ps-2019-Q1-A4"
+  :answer/text "Go"
+  :answer/question-ref #db/id [:db.part/user -200]}
+
+ {:answer/id "ps-2019-Q1-A5"
+  :answer/text "JavaScript"
+  :answer/question-ref #db/id [:db.part/user -200]}
+
+ {:answer/id "ps-2019-Q1-A6"
+  :answer/text "Python"
+  :answer/question-ref #db/id [:db.part/user -200]}
+ 
+ {:answer/id "ps-2019-Q1-A7"
+  :answer/text "R"
+  :answer/question-ref #db/id [:db.part/user -200]}
+
+ {:answer/id "ps-2019-Q1-A8"
+  :answer/text "Rust"
+  :answer/question-ref #db/id [:db.part/user -200]}
+
+ {:answer/id "ps-2019-Q1-A9"
+  :answer/text "Clojure/ClojureScript"
+  :answer/question-ref #db/id [:db.part/user -200]}]
