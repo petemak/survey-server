@@ -1,7 +1,8 @@
 (ns survey-server.db
   (:require [datomic.api :as d]
             [mount.core :refer [defstate]]
-            [clojure.java.io :as io]))
+            [clojure.java.io :as io]
+            [survey-server.queries :as querries]))
 
 
 ;;====================================================================
@@ -103,8 +104,8 @@
 ;; ----------------------------------------------------------------
 (defn questions
   "Returns questions for the survey specified by the given sid"
-  [sid qid]
-  (get survey-questions [sid qid]))
+  []
+  (d/q querries/question-querry (d/db conn)))
 
 
 ;; ----------------------------------------------------------------
